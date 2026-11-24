@@ -3390,7 +3390,7 @@ const handleWheelZoom = (e: React.WheelEvent) => {
               >
                 <canvas
   ref={mainCanvasRef}
-  className="block max-h-full max-w-full"
+  className="block w-full h-full"
 />
                 {/* Split Before/After Comparison */}
                 {compareMode === 'split' && !isCropMode && (
