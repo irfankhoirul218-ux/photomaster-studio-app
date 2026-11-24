@@ -2916,7 +2916,7 @@ export default function App() {
   const displayW = Math.round(renderSize.width * fitScale * zoomFactor);
   const displayH = Math.round(renderSize.height * fitScale * zoomFactor);
 
-  // Canvas zoom/pan handlers
+     // Canvas zoom/pan handlers   const handleWheelZoom = (e: React.WheelEvent) => {     if (!sourceImage || isCropMode) return;     if (Math.abs(e.deltaY) < 2) return;      e.preventDefault();      // Ambil posisi area gambar, bukan seluruh workspace     const canvasStage = mainCanvasRef.current?.parentElement;     if (!canvasStage) return;      const rect = canvasStage.getBoundingClientRect();      // Posisi mouse relatif terhadap titik tengah gambar     const mouseX = e.clientX - rect.left - rect.width / 2;     const mouseY = e.clientY - rect.top - rect.height / 2;      setZoomFactor((z) => {       const factor = Math.exp(-e.deltaY * 0.002);       const next = Math.max(0.5, Math.min(32, z * factor));       const ratio = next / z;        setPan((p) => ({         x: mouseX - (mouseX - p.x) * ratio,         y: mouseY - (mouseY - p.y) * ratio,       }));        return Number(next.toFixed(3));     });   };
   
 
 
@@ -2958,7 +2958,7 @@ const handleWheelZoom = (e: React.WheelEvent) => {
     });
   };
 
-  const handleCanvasPointerDown = (e: React.PointerEvent) => {
+     // Canvas zoom/pan handlers   const handleWheelZoom = (e: React.WheelEvent) => {     if (!sourceImage || isCropMode) return;     if (Math.abs(e.deltaY) < 2) return;      e.preventDefault();      // Ambil posisi area gambar, bukan seluruh workspace     const canvasStage = mainCanvasRef.current?.parentElement;     if (!canvasStage) return;      const rect = canvasStage.getBoundingClientRect();      // Posisi mouse relatif terhadap titik tengah gambar     const mouseX = e.clientX - rect.left - rect.width / 2;     const mouseY = e.clientY - rect.top - rect.height / 2;      setZoomFactor((z) => {       const factor = Math.exp(-e.deltaY * 0.002);       const next = Math.max(0.5, Math.min(32, z * factor));       const ratio = next / z;        setPan((p) => ({         x: mouseX - (mouseX - p.x) * ratio,         y: mouseY - (mouseY - p.y) * ratio,       }));        return Number(next.toFixed(3));     });   }; = (e: React.PointerEvent) => {
     if (!sourceImage || isCropMode) return;
     const isMiddleButton = e.button === 1;
     if (!isMiddleButton && (isRetouchMode || isMaskMode) && !effectivePanMode && compareMode === 'off') {
