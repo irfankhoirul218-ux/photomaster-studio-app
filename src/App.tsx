@@ -2917,16 +2917,33 @@ export default function App() {
   const displayH = Math.round(renderSize.height * fitScale * zoomFactor);
 
   // Canvas zoom/pan handlers
-  const handleWheelZoom = (e: React.WheelEvent) => {
-    if (!sourceImage || isCropMode) return;
-    if (Math.abs(e.deltaY) < 2) return;
-    e.preventDefault();
-    setZoomFactor((z) => {
-      const step = z >= 2.5 ? 0.35 : 0.15;
-      const delta = e.deltaY < 0 ? step : -step;
-      const next = Math.max(0.5, Math.min(8, +(z + delta).toFixed(2)));
-      if (next <= 1) setPan({ x: 0, y: 0 });
-      return next;
+  
+const handleWheelZoom = (e: React.WheelEvent) => {
+  if (!sourceImage || isCropMode) return;
+  if (Math.abs(e.deltaY) < 2) return;
+
+  e.preventDefault();
+
+  const rect = e.currentTarget.getBoundingClientRect();
+
+  const mouseX = e.clientX - rect.left - rect.width / 2;
+  const mouseY = e.clientY - rect.top - rect.height / 2;
+
+  setZoomFactor((z) => {
+    const factor = Math.exp(-e.deltaY * 0.002);
+    const next = Math.max(0.5, Math.min(32, z * factor));
+
+    const ratio = next / z;
+
+    setPan((p) => ({
+      x: mouseX - (mouseX - p.x) * ratio,
+      y: mouseY - (mouseY - p.y) * ratio,
+    }));
+
+    return +next.toFixed(3);
+  });
+};
+
     });
   };
 
