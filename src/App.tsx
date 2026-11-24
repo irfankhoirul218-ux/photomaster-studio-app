@@ -3360,8 +3360,10 @@ export default function App() {
                   transform: `translate3d(${pan.x}px, ${pan.y}px, 0)`,
                 }}
               >
-                <canvas ref={mainCanvasRef} className="block h-full w-full" />
-
+                <canvas
+  ref={mainCanvasRef}
+  className="block max-h-full max-w-full"
+/>
                 {/* Split Before/After Comparison */}
                 {compareMode === 'split' && !isCropMode && (
                   <CompareOverlay
