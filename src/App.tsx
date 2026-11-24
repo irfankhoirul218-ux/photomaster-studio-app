@@ -2918,6 +2918,8 @@ export default function App() {
 
   // Canvas zoom/pan handlers
   
+
+
 const handleWheelZoom = (e: React.WheelEvent) => {
   if (!sourceImage || isCropMode) return;
   if (Math.abs(e.deltaY) < 2) return;
@@ -2939,6 +2941,15 @@ const handleWheelZoom = (e: React.WheelEvent) => {
       x: mouseX - (mouseX - p.x) * ratio,
       y: mouseY - (mouseY - p.y) * ratio,
     }));
+
+    return +next.toFixed(3);
+  });
+};
+
+    return +next.toFixed(3);
+  });
+};
+
 
     return +next.toFixed(3);
   });
