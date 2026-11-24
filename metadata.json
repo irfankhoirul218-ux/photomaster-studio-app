@@ -1,0 +1,6 @@
+{
+  "name": "PhotoMaster Studio",
+  "description": "Professional browser-based photo editor inspired by Adobe Lightroom with non-destructive adjustments, presets, crop/transform, before/after comparison, and high-resolution export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
